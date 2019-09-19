@@ -1,26 +1,39 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
+import Item from './Item';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+	const [state, setState] = useState([
+		'string',
+		'number',
+		'object',
+		'array',
+		'null',
+		'undefined',
+		'boolean',
+		'symbol',
+		'function'
+	]);
+
+	const list = state.map((el, idx) => {
+		return (
+			<Item 
+				fullState={state} 
+				updateState={setState} 
+				key={idx} 
+				index={idx}
+				el={el}
+			/>
+		)
+		
+	});
+
+    return (
+		<div className="App">
+			<ul>
+				{list}
+			</ul>
+		</div>
+    );
 }
 
 export default App;
